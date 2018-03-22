@@ -3,12 +3,15 @@
 
 <html lang="en">
 
-	<head>
-		<title>Auction Site</title>
-	</head>
+<head>
+	<title>Auction Site</title>
+</head>
 	
-	<body>
-		<p>Test</p>
-	</body>
+<body>
+	
+	<div>
+		<p>test</p>
+	</div>
+</body>
 	
 </html>
