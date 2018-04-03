@@ -1,0 +1,88 @@
+@charset "ISO-8859-1";
+
+body {
+  font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+  color: #404040;
+  background: #bdd8fc;
+}
+
+.banner{
+	background-color: #a7b4d3;
+	text-align: center;
+	color: white;
+	height: auto;
+}
+
+#banner_home{
+	text-decoration:none;
+	color:white;
+	font-family:"Georgia";
+}
+
+.container {
+  margin: 80px auto;
+  width: 640px;
+}
+	
+.login {
+  color:#616d89;
+  font-family:"Georgia";
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 20px 20px;
+  width: 310px;
+  background: white;
+  border-radius: 3px;
+  @include box-shadow(0 0 200px rgba(white, .5), 0 1px 2px rgba(black, .3));
+
+  h1 {
+    margin: -20px -20px 21px;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    text-shadow: 0 1px white;
+    background: #f3f3f3;
+    border-bottom: 1px solid #cfcfcf;
+    border-radius: 3px 3px 0 0;
+    @include linear-gradient(top, whiteffd, #eef2f5);
+    @include box-shadow(0 1px #f5f5f5);
+  }
+
+  p { margin: 20px 0 0; }
+  p:first-child { margin-top: 0; }
+
+  input[type=text], input[type=password] { width: 278px; }
+
+  p.submit { text-align: right; }
+}
+
+input[type=text], input[type=password] {
+  margin: 5px;
+  padding: 0 45px 0 5px;
+  width: 248px;
+  height: 34px;
+  color: #404040;
+  background: white;
+  border: 1px solid;
+  border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+  border-radius: 2px;
+  outline: 5px solid #eff4f7;
+  -moz-outline-radius: 3px; 
+}
+
+input[type=submit] {
+	color:white;
+	height:30px;
+	width:100%;
+	font-family:"Georgia";
+	background-color: #a7b4d3;
+	border: none;
+}
+
+#register{
+	color:#616d89;
+	font-family:"Georgia";
+}
