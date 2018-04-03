@@ -22,6 +22,7 @@
 			Statement stmt = con.createStatement();
 	
 			//Get parameters from the HTML form at the index.jsp
+
 			String username = request.getParameter("username");
 			String actualPassword = request.getParameter("password");
 			 

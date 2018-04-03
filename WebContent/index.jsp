@@ -29,6 +29,5 @@
       <p><a id="register" href="register.jsp">Don't have an account? Register</a></p>	
     </div>
 </section>
-
 </body>
 </html>
