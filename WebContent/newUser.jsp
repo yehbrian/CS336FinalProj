@@ -20,14 +20,31 @@
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		
-		//Get parameters from the HTML form at the HelloWorld.jsp
+		//Get parameters from the HTML form at the register.jsp
 		String newUsername = request.getParameter("username");
 		String newPassword = request.getParameter("password");
+		String confirmPW = request.getParameter("confirmPW");
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String address = request.getParameter("address");
+		String state = request.getParameter("state");
+		String country = request.getParameter("country");
+		String zip = request.getParameter("zip");
+		String phone = request.getParameter("phone");
+		String securityQ1 = request.getParameter("securityQ1");
+		String securityA1 = request.getParameter("securityA1");
+		String securityQ2 = request.getParameter("securityQ2");
+		String securityA2 = request.getParameter("securityA2");
+		
+		if(!newPassword.equals(confirmPW)){
+			//passwords do not match
+		}
 		
 		String checkUsername="SELECT username FROM Users "
 				+ "WHERE username = \""+ newUsername +"\"";
 		ResultSet result = stmt.executeQuery(checkUsername);
 		
+		//if user does not exist
 		if(!result.next()){
 
 			//Populate SQL statement with an actual query. It returns a single number. The number of users in the DB.
@@ -42,15 +59,27 @@
 			int userCount = result.getInt("cnt")+1;
 	
 			//Make an insert statement for the Sells table:
-			String insert = "INSERT INTO Users(username,password,userID)"
-					+ "VALUES (?, ?, ?)";
+			String insert = "INSERT INTO Users(userID,username,password,email,name,phoneNumber,address,state,country,zip,securityQ1,securityQ2, securityA1,securityA2)"
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 			PreparedStatement ps = con.prepareStatement(insert);
 	
 			//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-			ps.setString(1, newUsername);
-			ps.setString(2, newPassword);
-			ps.setFloat(3, userCount);
+			ps.setFloat(1, userCount);
+			ps.setString(2, newUsername);
+			ps.setString(3, newPassword);
+			ps.setString(4, email);
+			ps.setString(5, name);
+			ps.setString(6, phone);
+			ps.setString(7, address);
+			ps.setString(8, state);
+			ps.setString(9, country);
+			ps.setString(10, zip);
+			ps.setString(11, securityQ1);
+			ps.setString(12, securityA1);
+			ps.setString(13, securityQ2);
+			ps.setString(14, securityA2);
+			
 			//Run the query against the DB
 			ps.executeUpdate();
 		}

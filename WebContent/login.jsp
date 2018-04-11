@@ -35,6 +35,10 @@
 				//returns curser to front of resultset
 				//result.beforeFirst();
 				String expectedPassword = result.getString("password");
+				session.setAttribute("user", username); // the username will be stored in the session
+		        out.println("welcome " + username);
+		        out.println("<a href='logout.jsp'>Log out</a>");
+		        response.sendRedirect("home.jsp");
 				
 				//if password does not match
 				if(!expectedPassword.equals(actualPassword)){
