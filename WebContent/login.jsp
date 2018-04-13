@@ -49,8 +49,6 @@
 				}
 				session.setAttribute("userID", result.getInt("userID")); // the username will be stored in the session
 				session.setAttribute("user", username); // the username will be stored in the session
-		        out.println("welcome " + username);
-		        out.println("<a href='logout.jsp'>Log out</a>");
 		        response.sendRedirect("home.jsp");
 			}
 			//if username does not match
