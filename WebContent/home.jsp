@@ -48,6 +48,9 @@
 	out.print("<a href='oldbids.jsp'>View some old auctions and the winners here!</a>");
 	out.println("</div>");
 	out.println("<div>");	
+	out.print("<a href='viewusersbid.jsp'>View the auctions that you have bid on!</a>");
+	out.println("</div>");
+	out.println("<div>");	
 	out.print("<a href='deletAccount.jsp'>Delete Your Account Here! Sad to see you go!</a>");
 	out.println("</div>");
 	

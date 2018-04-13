@@ -61,6 +61,21 @@ table, th, td {
 
 	</form>
 
+	
+	
+	
+	
+	view history of an items bids here.
+	<form method="post" action=viewbids.jsp>
+		<div>
+			Enter Item ID here: <input type="number" name="itemID" required>
+		</div>
+
+		Please press enter to bid! <input type="submit">
+
+	</form>
+	
+
 
 	<%
 		out.print("<table id=\"fixedheight\">");
