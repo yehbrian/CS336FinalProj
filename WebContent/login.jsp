@@ -40,13 +40,9 @@
 				
 				//if password does not match
 				if(!expectedPassword.equals(actualPassword)){
-					%>
-					<script>
-						alert("Password does not match");
-						window.location = "index.jsp";
-					</script>
-					<%
+					response.sendRedirect("index.jsp");
 				}
+				session.setAttribute("wrongPasswordFlag","true");
 				session.setAttribute("userID", result.getInt("userID")); // the username will be stored in the session
 				session.setAttribute("user", username); // the username will be stored in the session
 		        response.sendRedirect("home.jsp");

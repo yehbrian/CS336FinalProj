@@ -62,7 +62,7 @@
 			PreparedStatement ps = con.prepareStatement(insert);
 	
 			//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-			ps.setFloat(1, userCount);
+			ps.setInt(1, userCount);
 			ps.setString(2, newUsername);
 			ps.setString(3, newPassword);
 			ps.setString(4, email);

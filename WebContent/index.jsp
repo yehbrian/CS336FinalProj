@@ -20,6 +20,11 @@
     <div class="login">
       <h1>Login</h1>
       <form method="post" action="login.jsp">
+      <%
+      if(session.getAttribute("wrongPasswordFlag") != null){
+    	  out.println("<p>Incorrect username or password</p>");
+      }
+      %>
         <p><input type="text" name="username" value="" placeholder="Username or Email"></p>
         <p><input type="password" name="password" value="" placeholder="Password"></p>
         
