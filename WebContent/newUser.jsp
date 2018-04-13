@@ -60,7 +60,7 @@
 	
 			//Make an insert statement for the Sells table:
 			String insert = "INSERT INTO Users(userID,username,password,email,name,phoneNumber,address,state,country,zip,securityQ1,securityQ2, securityA1,securityA2)"
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 			PreparedStatement ps = con.prepareStatement(insert);
 	

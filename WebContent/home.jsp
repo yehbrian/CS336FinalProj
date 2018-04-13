@@ -43,7 +43,7 @@
 	out.print("<div>");
 	out.print("<a href='auction.html'>Create Auction here!</a>");
 	out.print("</div>");
-	out.print("<a href='viewAuctions.jsp'>View Auctions here!</a>");
+	out.print("<a href='viewauction.jsp'>View Auctions here!</a>");
 	out.println("<div>");	
 	out.print("<a href='deletAccount.jsp'>Delete Your Account Here! Sad to see you go!</a>");
 	out.println("</div>");
