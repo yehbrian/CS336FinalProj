@@ -90,7 +90,7 @@
 		
 		<script>
 		alert("Username already in use");
-		window.location = "register.jsp";
+		window.location = "registerCustomerRep.jsp";
 		</script>
 		
 		<% 
@@ -105,7 +105,7 @@
 	}
 %>
 
-<p> Thank you for registering. </p>
+<p> You've created a new customer rep. </p>
 <br>
 	<form method="post" action="index.jsp">
 		<input type="submit" value="return to login">

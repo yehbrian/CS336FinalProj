@@ -90,19 +90,27 @@ input::-webkit-input-placeholder {
   color: #616d89;
   font-style: italic;
   font-size: 12px;
-  opacity: .5;}
+  opacity: .5;
+}
 input:-moz-placeholder {
   color: #616d89;
   font-style: italic;
   font-size: 12px;
-  opacity: .5;}
+  opacity: .5;
+}
 input::-moz-placeholder {  
   color: #616d89;
   font-style: italic;
   font-size: 12px;
-  opacity: .5;}
+  opacity: .5;
+}
 input:-ms-input-placeholder {
   color: #616d89;
   font-style: italic;
   font-size: 12px;
-  opacity: .5;}
+  opacity: .5;
+}
+#register:hover{
+	opacity: 0.5;
+}
+  

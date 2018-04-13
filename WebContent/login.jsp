@@ -26,8 +26,10 @@
 			String username = request.getParameter("username");
 			String actualPassword = request.getParameter("password");
 			 
+			//checks if username or emails matches.
+			//var username could count as email if that is what user inputted
 			String checkUsername="SELECT * FROM Users "
-					+ "WHERE username = \""+ username +"\"";
+					+ "WHERE username = \""+ username +"\" OR email = \""+ username +"\"";
 			ResultSet result = stmt.executeQuery(checkUsername);
 			
 			//if there's an existing user
@@ -35,10 +37,6 @@
 				//returns curser to front of resultset
 				//result.beforeFirst();
 				String expectedPassword = result.getString("password");
-				session.setAttribute("user", username); // the username will be stored in the session
-		        out.println("welcome " + username);
-		        out.println("<a href='logout.jsp'>Log out</a>");
-		        response.sendRedirect("home.jsp");
 				
 				//if password does not match
 				if(!expectedPassword.equals(actualPassword)){
@@ -49,6 +47,11 @@
 					</script>
 					<%
 				}
+				session.setAttribute("userID", result.getInt("userID")); // the username will be stored in the session
+				session.setAttribute("user", username); // the username will be stored in the session
+		        out.println("welcome " + username);
+		        out.println("<a href='logout.jsp'>Log out</a>");
+		        response.sendRedirect("home.jsp");
 			}
 			//if username does not match
 			else{

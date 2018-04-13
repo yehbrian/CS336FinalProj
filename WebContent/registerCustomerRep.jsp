@@ -19,7 +19,7 @@
 <section class="container">
     <div class="register">
       <h1>Register</h1>
-      <form method="post" action="newUser.jsp">
+      <form method="post" action="newCustomerRep.jsp">
       	<p><label for="username" class="register_labels"> *Username </label></p>
         <p><input id="username" type="text" name="username" required="required" value="" placeholder="e.g. JohnSmith12"></p>
         
@@ -62,7 +62,7 @@
         <p><label for="securityA2" class="register_labels"> *Security Answer 2 </label></p>
         <p><input id="securityA2" type="text" name="securityA2" value="" placeholder="e.g. BuyMe" required="required"></p>
         
-        <input type="hidden" type="number" name="permission" value="0">
+        <input type="hidden" type="number" name="permission" value="1">
         
         <p class="submit"><input type="submit" value="Submit"></p>
       </form>
