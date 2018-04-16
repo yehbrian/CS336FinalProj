@@ -63,6 +63,19 @@ input[type=text], input[type=password], input[type=email], input[type=tel], inpu
   outline: 5px solid #eff4f7;
 }
 
+select{
+  margin: 5px;
+  padding: 5px 0 5px;
+  width: 248px;
+  height: 34px;
+  color: #404040;
+  background: white;
+  border: 1px solid;
+  border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+  border-radius: 2px;
+  outline: 5px solid #eff4f7;
+}
+
 #messageBox{
   margin: 5px;
   padding: 0 45px 0 5px;

@@ -34,6 +34,8 @@
 			String minimum = request.getParameter("minimum");
 			String hours = request.getParameter("date");
 			
+			String[] itemAttr = {category,cond,brand,metal,stone,color};
+			
 			
 			long h = System.currentTimeMillis() + (long)(Integer.parseInt(hours)*3600000);
 			java.sql.Timestamp time = new java.sql.Timestamp(h);
@@ -62,10 +64,62 @@
 			
 			ps.executeUpdate();
 			
-			con.close();
+			String getCnt = "SELECT COUNT(*) as cnt FROM Items";
+			ResultSet result = stmt.executeQuery(getCnt);
+			result.next();
+			int itemCount = result.getInt("cnt");
 			
+			//get all alerts
+			String allAlerts_ = "SELECT * FROM Alerts";
+			Statement stmt2 = con.createStatement();
+			ResultSet allAlerts = stmt2.executeQuery(allAlerts_);
+			
+			//setting up alert message values
+			long currTime_ = System.currentTimeMillis();
+			java.sql.Timestamp currentTime = new java.sql.Timestamp(currTime_);
+			
+			String insert="";
+			PreparedStatement ps2;
+			String alertMsg = "Hi, an item you've been waiting for been listed for auction. "
+					+"The item ID is "+itemCount+". You can look up the item by using our search function";
+					
+			boolean matching = true;
+			
+			//goes through alerts and finds matching alerts
+			while(allAlerts.next()){
+				for(int i=3;i<9;i++){
+					if(!allAlerts.getString(i).isEmpty() && !allAlerts.getString(i).equals(itemAttr[i-3])){
+						System.out.println("alert: "+allAlerts.getString(i)+" ItemAttr: "+itemAttr[i-3]);
+						matching = false;
+						break;
+					}
+				}
+				
+				if(matching){
+					System.out.println("matches alert");
+					
+					insert = "INSERT INTO Messages(messageID,senderID,receiverID,message,time)"
+							+ "VALUES (?, ?, ?, ?, ?)";
+					ps2 = con.prepareStatement(insert);
+					
+					int messageID = 0;
+					int senderID = 5;
+	
+					//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
+					ps2.setInt(1, messageID);
+					ps2.setInt(2, senderID);
+					ps2.setInt(3, allAlerts.getInt("userID"));
+					ps2.setString(4, alertMsg);
+					ps2.setTimestamp(5, currentTime);
+					
+					ps2.executeUpdate();
+				}
+			}
+			con.close();
 			response.sendRedirect("home.jsp");
-		} else {
+				
+		}
+		else {
 	%>
 	You are not logged in
 	<br />

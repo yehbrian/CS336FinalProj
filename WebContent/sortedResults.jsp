@@ -9,10 +9,16 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 <style>
-	table, th, td {
+	table{
+		border:1px solid black;
+		padding:2px;
+		background-color: white;
+		width:100%;
+	}
+	th, td {
 		border: 1px solid black;
 		padding: 2px;
-}
+	}
 </style>
 
 <%

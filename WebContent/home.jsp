@@ -43,7 +43,7 @@
 	</div>
 	
 	<div>
-	<a href='setAlert.html'>Set an alert</a>
+	<a href='makeAlert.jsp'>Set an alert</a>
 	</div>
 	
 	<div>

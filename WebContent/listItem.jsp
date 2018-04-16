@@ -14,7 +14,7 @@
 	  		<option value="Ring">Ring</option>
 	  		<option value="Necklace">Necklace</option>
 	  		<option value="Watch">Watch</option>
-		</select>
+  </select>
 		<br>
 	condition:<br>
   <input type="text" name="cond" required>
