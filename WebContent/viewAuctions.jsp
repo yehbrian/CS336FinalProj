@@ -36,6 +36,8 @@
 Welcome
 <%=session.getAttribute("user")%>
 
+<p><a href='home.jsp'>Back</a>
+
 <%
 	if ((session.getAttribute("user") != null)) {
 		int u = Integer.parseInt(session.getAttribute("userID").toString());
@@ -52,7 +54,7 @@ Welcome
 
 <div class="container2">
 <p>Make a bid here.</p>
-	<form method="post" action=makeBid.jsp>
+	<form method="post" action="makeBid.jsp">
 	<div>
 		<p>Enter Item ID here: <input type="number" name="itemID" required></p>
 	</div>
@@ -76,6 +78,16 @@ Welcome
 	</div>
 
 	<p> <input type="submit" value="Make a bid!" width="30%"> </p>
+	</form>
+	
+	view history of an items bids here.
+	<form method="post" action="viewBids.jsp">
+		<div>
+			Enter Item ID here: <input type="number" name="itemID" required>
+		</div>
+
+		Please press enter to bid! <input type="submit">
+
 	</form>
 	
 	<div>

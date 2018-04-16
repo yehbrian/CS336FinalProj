@@ -38,7 +38,7 @@
 				String expectedPassword = result.getString("password");
 				
 				//if password does not match
-				if(!expectedPassword.equals(actualPassword)){
+				if(!expectedPassword.equals(actualPassword) || result.getInt("isActive")==0){
 					response.sendRedirect("index.jsp");
 				}
 				session.setAttribute("wrongPasswordFlag","true");

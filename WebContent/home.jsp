@@ -43,6 +43,14 @@
 	</div>
 	
 	<div>
+	<a href='oldBids.jsp'>View old auction(s) and the winners here</a>
+	</div>
+	
+	<div>
+	<a href='viewUsersBid.jsp'>View the auctions you have bid on</a>
+	</div>
+	
+	<div>
 	<a href='makeAlert.jsp'>Set an alert</a>
 	</div>
 	

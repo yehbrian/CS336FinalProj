@@ -87,8 +87,10 @@
 			
 			//goes through alerts and finds matching alerts
 			while(allAlerts.next()){
+				matching = true;
+				
 				for(int i=3;i<9;i++){
-					if(!allAlerts.getString(i).isEmpty() && !allAlerts.getString(i).equals(itemAttr[i-3])){
+					if(!allAlerts.getString(i).isEmpty() && !allAlerts.getString(i).equalsIgnoreCase(itemAttr[i-3])){
 						System.out.println("alert: "+allAlerts.getString(i)+" ItemAttr: "+itemAttr[i-3]);
 						matching = false;
 						break;

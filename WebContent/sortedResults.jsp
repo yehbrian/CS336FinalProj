@@ -36,6 +36,8 @@
 Welcome
 <%=session.getAttribute("user")%>
 
+<p><a href='home.jsp'>Back</a>
+
 <%
 	if ((session.getAttribute("user") != null)) {
 		int u = Integer.parseInt(session.getAttribute("userID").toString());

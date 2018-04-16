@@ -48,7 +48,7 @@
 								if (result2.getInt("automaticBidding") == 1) {
 									if (((result3.getFloat("amount") * -1)) >= amount
 											+ result.getFloat("increment")) {
-										System.out.println("automatic bidding, old automatic bidding, 1");
+										//System.out.println("automatic bidding, old automatic bidding, 1");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
 												+ " VALUES (?,?,?,?,?,?)";
 										PreparedStatement ps = con.prepareStatement(insert);
@@ -63,8 +63,19 @@
 										ps.setTimestamp(6, time);
 										System.out.println(ps);
 										ps.executeUpdate();
+										
+										ps.setInt(1, x);
+										ps.setInt(2, u);
+										ps.setInt(3, itemID);
+										ps.setFloat(4, amount);
+										ps.setInt(5, 1);
+										//long h = System.currentTimeMillis();
+										//java.sql.Timestamp time = new java.sql.Timestamp(h);
+										ps.setTimestamp(6, time);
+										//System.out.println(ps);
+										ps.executeUpdate();
 									} else if ((result3.getFloat("amount") * -1) >= amount) {
-										System.out.println("nonautomatic bidding, old automatic bidding, 2");
+										//System.out.println("nonautomatic bidding, old automatic bidding, 2");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
 												+ " VALUES (?,?,?,?,?,?)";
 										PreparedStatement ps = con.prepareStatement(insert);
@@ -76,10 +87,21 @@
 										long h = System.currentTimeMillis();
 										java.sql.Timestamp time = new java.sql.Timestamp(h);
 										ps.setTimestamp(6, time);
-										System.out.println(ps);
+										//System.out.println(ps);
+										ps.executeUpdate();
+										
+										ps.setInt(1, x);
+										ps.setInt(2, u);
+										ps.setInt(3, itemID);
+										ps.setFloat(4, amount);
+										ps.setInt(5, 1);
+										//long h = System.currentTimeMillis();
+										//java.sql.Timestamp time = new java.sql.Timestamp(h);
+										ps.setTimestamp(6, time);
+										//System.out.println(ps);
 										ps.executeUpdate();
 									} else {
-										System.out.println("nonautomatic bidding, old automatic bidding, 3");
+										//System.out.println("nonautomatic bidding, old automatic bidding, 3");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
 												+ " VALUES (?,?,?,?,?,?)";
 										PreparedStatement ps = con.prepareStatement(insert);
@@ -91,7 +113,7 @@
 										long h = System.currentTimeMillis();
 										java.sql.Timestamp time = new java.sql.Timestamp(h);
 										ps.setTimestamp(6, time);
-										System.out.println(ps);
+										//System.out.println(ps);
 										ps.executeUpdate();
 									}
 

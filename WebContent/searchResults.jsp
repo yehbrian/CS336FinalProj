@@ -9,9 +9,16 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 <style>
-	table, th, td {
+	table{
+		border:1px solid black;
+		padding:2px;
+		background-color: white;
+		width:100%;
+	}
+	th, td {
 		border: 1px solid black;
 		padding: 2px;
+	}
 }
 </style>
 
@@ -62,7 +69,7 @@
 	Connection con = db.getConnection();
 	Statement stmt = con.createStatement();
 
-	String itemID = request.getParameter("userID");
+	String itemID = request.getParameter("itemID");
 	String itemName = request.getParameter("itemName");
 	String category = request.getParameter("category");
 	String cond = request.getParameter("condition");
@@ -78,7 +85,7 @@
 
 	String search = "";
 
-	if(itemID!=null){
+	if(!itemID.isEmpty()){
 		search = "SELECT * FROM Items "
 				+ "WHERE itemID = \""+itemID+"\"";
 	}
