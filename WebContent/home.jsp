@@ -31,13 +31,11 @@
 	<a href='logout.jsp'>Log out</a>
 	
 	<div class="search">
-	<form method ="post" action = "searchResults.jsp">
-		<p>Search for an item here <input type ="text" name="search" id="searchItem"></p>
-	</form>
+	<a href='searchListings.jsp'>Search for an item</a>
 	</div>
 	
 	<div>
-	<a href='auction.html'>Create a listing</a>
+	<a href='listItem.jsp'>Create a listing</a>
 	</div>
 	
 	<div>
@@ -46,6 +44,14 @@
 	
 	<div>
 	<a href='setAlert.html'>Set an alert</a>
+	</div>
+	
+	<div>
+	<a href='viewMessages.jsp'>View my messages</a>
+	</div>
+	
+	<div>
+	<a href='sendMessage.jsp'>Send a message</a>
 	</div>
 	
 	<div>

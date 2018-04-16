@@ -9,13 +9,7 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 <style>
-	table{
-		border:1px solid black;
-		padding:2px;
-		background-color: white;
-		width:100%;
-	}
-	th, td {
+	table, th, td {
 		border: 1px solid black;
 		padding: 2px;
 }
@@ -41,13 +35,20 @@ Welcome
 		int u = Integer.parseInt(session.getAttribute("userID").toString());
 		ApplicationDB db = new ApplicationDB();
 		Connection con = db.getConnection();
-
-		//Create a SQL statement
 		Statement stmt = con.createStatement();
+		
+		String column = request.getParameter("column");
+		String sortOption =request.getParameter("sortOption");
+		String sortedItems="";
+		
+		if(sortOption.equals("Ascending")){
+			sortedItems = "SELECT * FROM Items ORDER BY "+column;
+		}
+		else{
+			sortedItems = "SELECT * FROM Items ORDER BY "+column+" DESC";
+		}
 
-		String items = String.format("select * from Items");
-
-		ResultSet result = stmt.executeQuery(items);
+		ResultSet result = stmt.executeQuery(sortedItems);
 %>
 
 <div class="container2">
