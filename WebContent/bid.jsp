@@ -54,6 +54,19 @@
 										System.out.println("automatic bidding, old automatic bidding, 1");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
 												+ " VALUES (?,?,?,?,?,?)";
+										
+										
+										long h = System.currentTimeMillis();
+										java.sql.Timestamp time = new java.sql.Timestamp(h);
+										String msg = "INSERT INTO Messages(senderID,receiverID,message,time)"
+												+ "VALUES (?, ?, ?, ?)";
+										PreparedStatement message = con.prepareStatement(msg);
+										message.setInt(1, 5);
+										message.setInt(2, result2.getInt("buyerID"));
+										message.setString(3, "you have been outbid on " + itemID);
+										message.setTimestamp(4, time);
+										
+										
 										PreparedStatement ps = con.prepareStatement(insert);
 										ps.setInt(1, x);
 										ps.setInt(2, result3.getInt("buyerID"));
@@ -61,8 +74,8 @@
 										ps.setFloat(4, (amount) + result.getFloat("increment"));
 										//old + 1?
 										ps.setInt(5, 1);
-										long h = System.currentTimeMillis();
-										java.sql.Timestamp time = new java.sql.Timestamp(h);
+										//long h = System.currentTimeMillis();
+										//java.sql.Timestamp time = new java.sql.Timestamp(h);
 										ps.setTimestamp(6, time);
 										System.out.println(ps);
 										ps.executeUpdate();
@@ -70,14 +83,27 @@
 										System.out.println("nonautomatic bidding, old automatic bidding, 2");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
 												+ " VALUES (?,?,?,?,?,?)";
+										
+										
+										long h = System.currentTimeMillis();
+										java.sql.Timestamp time = new java.sql.Timestamp(h);
+										String msg = "INSERT INTO Messages(senderID,receiverID,message,time)"
+												+ "VALUES (?, ?, ?, ?)";
+										PreparedStatement message = con.prepareStatement(msg);
+										message.setInt(1, 5);
+										message.setInt(2, result2.getInt("buyerID"));
+										message.setString(3, "you have been outbid on " + itemID);
+										message.setTimestamp(4, time);
+										
+										
 										PreparedStatement ps = con.prepareStatement(insert);
 										ps.setInt(1, x);
 										ps.setInt(2, result3.getInt("buyerID"));
 										ps.setInt(3, itemID);
 										ps.setFloat(4, (result3.getFloat("amount") * -1));
 										ps.setInt(5, 1);
-										long h = System.currentTimeMillis();
-										java.sql.Timestamp time = new java.sql.Timestamp(h);
+										//long h = System.currentTimeMillis();
+										//java.sql.Timestamp time = new java.sql.Timestamp(h);
 										ps.setTimestamp(6, time);
 										System.out.println(ps);
 										ps.executeUpdate();
@@ -85,6 +111,9 @@
 										System.out.println("nonautomatic bidding, old automatic bidding, 3");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
 												+ " VALUES (?,?,?,?,?,?)";
+										
+
+										
 										PreparedStatement ps = con.prepareStatement(insert);
 										ps.setInt(1, x);
 										ps.setInt(2, Integer.parseInt(session.getAttribute("userID").toString()));
@@ -122,14 +151,25 @@
 										System.out.println("automatic bidding if");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
 												+ " VALUES (?,?,?,?,?,?)";
+										
+										long h = System.currentTimeMillis();
+										java.sql.Timestamp time = new java.sql.Timestamp(h);
+										String msg = "INSERT INTO Messages(senderID,receiverID,message,time)"
+												+ "VALUES (?, ?, ?, ?)";
+										PreparedStatement message = con.prepareStatement(msg);
+										message.setInt(1, 5);
+										message.setInt(2, result2.getInt("buyerID"));
+										message.setString(3, "you have been outbid on " + itemID);
+										message.setTimestamp(4, time);
+										
 										PreparedStatement ps = con.prepareStatement(insert);
 										ps.setInt(1, x);
 										ps.setInt(2, result3.getInt("buyerID"));
 										ps.setInt(3, itemID);
 										ps.setFloat(4, (amount) + result.getFloat("increment"));
 										ps.setInt(5, 1);
-										long h = System.currentTimeMillis();
-										java.sql.Timestamp time = new java.sql.Timestamp(h);
+										//long h = System.currentTimeMillis();
+										//java.sql.Timestamp time = new java.sql.Timestamp(h);
 										ps.setTimestamp(6, time);
 										System.out.println(ps);
 										ps.executeUpdate();
@@ -137,14 +177,26 @@
 										System.out.println("automatic bidding else if");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
 												+ " VALUES (?,?,?,?,?,?)";
+										
+										long h = System.currentTimeMillis();
+										java.sql.Timestamp time = new java.sql.Timestamp(h);
+										String msg = "INSERT INTO Messages(senderID,receiverID,message,time)"
+												+ "VALUES (?, ?, ?, ?)";
+										PreparedStatement message = con.prepareStatement(msg);
+										message.setInt(1, 5);
+										message.setInt(2, result2.getInt("buyerID"));
+										message.setString(3, "you have been outbid on " + itemID);
+										message.setTimestamp(4, time);
+										
+										
 										PreparedStatement ps = con.prepareStatement(insert);
 										ps.setInt(1, x);
 										ps.setInt(2, result3.getInt("buyerID"));
 										ps.setInt(3, itemID);
 										ps.setFloat(4, (result3.getFloat("amount") * -1));
 										ps.setInt(5, 1);
-										long h = System.currentTimeMillis();
-										java.sql.Timestamp time = new java.sql.Timestamp(h);
+										//long h = System.currentTimeMillis();
+										//java.sql.Timestamp time = new java.sql.Timestamp(h);
 										ps.setTimestamp(6, time);
 										System.out.println(ps);
 										ps.executeUpdate();

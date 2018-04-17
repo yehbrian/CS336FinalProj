@@ -37,6 +37,9 @@
 			String minimum = request.getParameter("minimum");
 			String hours = request.getParameter("date");
 			
+			if(minimum == null){
+				minimum = startingBid;
+			}
 			
 			long h = System.currentTimeMillis() + (long)(Integer.parseInt(hours)*3600000);
 			java.sql.Timestamp time = new java.sql.Timestamp(h);
