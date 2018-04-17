@@ -5,10 +5,9 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Register</title>
-</head>
+
+<jsp:include page="head.jsp"></jsp:include>
+
 <body>
 	<%
 	try {
@@ -31,10 +30,7 @@
 		String country = request.getParameter("country");
 		String zip = request.getParameter("zip");
 		String phone = request.getParameter("phone");
-		String securityQ1 = request.getParameter("securityQ1");
-		String securityA1 = request.getParameter("securityA1");
-		String securityQ2 = request.getParameter("securityQ2");
-		String securityA2 = request.getParameter("securityA2");
+		String permission = request.getParameter("permission");
 		
 		if(!newPassword.equals(confirmPW)){
 			//passwords do not match
@@ -45,7 +41,7 @@
 		ResultSet result = stmt.executeQuery(checkUsername);
 		
 		//if user does not exist
-		if(!result.next()){
+		if(!result.next() && request.getParameter("username") != null){
 
 			//Populate SQL statement with an actual query. It returns a single number. The number of users in the DB.
 			String str = "SELECT COUNT(*) as cnt FROM Users";
@@ -59,13 +55,13 @@
 			int userCount = result.getInt("cnt")+1;
 	
 			//Make an insert statement for the Sells table:
-			String insert = "INSERT INTO Users(userID,username,password,email,name,phoneNumber,address,state,country,zip,securityQ1,securityQ2, securityA1,securityA2)"
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String insert = "INSERT INTO Users(userID,username,password,email,name,phoneNumber,address,state,country,zip,permission,isActive)"
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 			PreparedStatement ps = con.prepareStatement(insert);
 	
 			//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-			ps.setFloat(1, userCount);
+			ps.setInt(1, userCount);
 			ps.setString(2, newUsername);
 			ps.setString(3, newPassword);
 			ps.setString(4, email);
@@ -75,10 +71,8 @@
 			ps.setString(8, state);
 			ps.setString(9, country);
 			ps.setString(10, zip);
-			ps.setString(11, securityQ1);
-			ps.setString(12, securityA1);
-			ps.setString(13, securityQ2);
-			ps.setString(14, securityA2);
+			ps.setString(11, permission);
+			ps.setBoolean(12, true);
 			
 			//Run the query against the DB
 			ps.executeUpdate();

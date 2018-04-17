@@ -37,7 +37,7 @@ body {
   @include box-shadow(0 0 200px rgba(white, .5), 0 1px 2px rgba(black, .3));
 }
 
-.register {
+.register{
   color:#616d89;
   font-family:"Georgia";
   text-align: center;
@@ -50,7 +50,7 @@ body {
   @include box-shadow(0 0 200px rgba(white, .5), 0 1px 2px rgba(black, .3));
 }
 
-input[type=text], input[type=password], input[type=email], input[type=tel] {
+input[type=text], input[type=password], input[type=email], input[type=tel], input[type=number]{
   margin: 5px;
   padding: 0 45px 0 5px;
   width: 248px;
@@ -61,6 +61,32 @@ input[type=text], input[type=password], input[type=email], input[type=tel] {
   border-color: #c4c4c4 #d1d1d1 #d4d4d4;
   border-radius: 2px;
   outline: 5px solid #eff4f7;
+}
+
+select{
+  margin: 5px;
+  padding: 5px 0 5px;
+  width: 248px;
+  height: 34px;
+  color: #404040;
+  background: white;
+  border: 1px solid;
+  border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+  border-radius: 2px;
+  outline: 5px solid #eff4f7;
+}
+
+#messageBox{
+  margin: 5px;
+  padding: 0 45px 0 5px;
+  width: 248px;
+  color: #404040;
+  background: white;
+  border: 1px solid;
+  border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+  border-radius: 2px;
+  outline: 5px solid #eff4f7;
+	
 }
 
 input[type=submit] {
@@ -90,19 +116,31 @@ input::-webkit-input-placeholder {
   color: #616d89;
   font-style: italic;
   font-size: 12px;
-  opacity: .5;}
+  opacity: .5;
+}
 input:-moz-placeholder {
   color: #616d89;
   font-style: italic;
   font-size: 12px;
-  opacity: .5;}
+  opacity: .5;
+}
 input::-moz-placeholder {  
   color: #616d89;
   font-style: italic;
   font-size: 12px;
-  opacity: .5;}
+  opacity: .5;
+}
 input:-ms-input-placeholder {
   color: #616d89;
   font-style: italic;
   font-size: 12px;
-  opacity: .5;}
+  opacity: .5;
+}
+
+#sort_btn{
+	margin: 0 0 0 10px;
+	width:60px;
+}
+
+
+
