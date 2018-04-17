@@ -16,6 +16,25 @@
 	</div>
 </header>
 
+<%
+	if ((session.getAttribute("user") == null)) {
+%>
+	You are not logged in
+	<br />
+	<a href="index.jsp">Please Login</a>
+<%
+	}
+	//we need to check to see if the user is a user, admin, or customer rep
+	else if((Integer)session.getAttribute("permissions") < 2) { %> 
+		You do not have permission to view this page.
+		<br />
+		<a href="home.jsp">Return to home page</a>
+	<%
+	}
+	else {
+	%>
+		
+
 <section class="container">
     <div class="register">
       <h1>Register</h1>
@@ -50,18 +69,6 @@
         <p><label for="phone" class="register_labels"> Phone </label></p>
         <p><input id="phone" type="tel" name="phone" value="" placeholder="e.g. 123-456-7890"></p>
         
-        <p><label for="securityQ1" class="register_labels"> *Security Question 1 </label></p>
-        <p><input id="securityQ1" type="text" name="securityQ1" value="" placeholder="e.g. What is my favorite book?" required="required"></p>
-        
-        <p><label for="securityA1" class="register_labels"> *Security Answer 1 </label></p>
-        <p><input id="securityA1" type="text" name="securityA1" value="" placeholder="e.g. 1984" required="required"></p>
-        
-        <p><label for="securityQ2" class="register_labels"> *Security Question 2 </label></p>
-        <p><input id="securityQ2" type="text" name="securityQ2" value="" placeholder="e.g. What is my favorite site?" required="required"></p>
-        
-        <p><label for="securityA2" class="register_labels"> *Security Answer 2 </label></p>
-        <p><input id="securityA2" type="text" name="securityA2" value="" placeholder="e.g. BuyMe" required="required"></p>
-        
         <input type="hidden" type="number" name="permission" value="1">
         
         <p class="submit"><input type="submit" value="Submit"></p>
@@ -69,5 +76,6 @@
       
     </div>
 </section>
+<% } %>
 </body>
 </html>

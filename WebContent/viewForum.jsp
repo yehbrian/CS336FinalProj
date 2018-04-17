@@ -47,12 +47,10 @@ Welcome
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 
-		String searchStr=request.getParameter("searchStr");
-		String search = "SELECT * from ForumPosts WHERE message LIKE '%"+searchStr+"%' ORDER BY postID DESC";
-		
-		ResultSet result = stmt.executeQuery(search);
-%>
+		String items = String.format("select * from ForumPosts ORDER BY postID DESC");
 
+		ResultSet result = stmt.executeQuery(items);
+%>
 <div>
 	<form action="searchResults.jsp">
 		<p><label for="searchStr" class="register_labels"> Search for words: </label></p>
@@ -61,21 +59,19 @@ Welcome
 	</form>
 </div>
 
+
 <div class="container2">
 	<form method="post" action="makePost.jsp">
 		<p> <input type="submit" value="Post to forum"> </p>
 	</form>
 			
 	<% 
-		ArrayList<Integer> searched = new ArrayList<Integer>();
 		int currentPostID;
-		int mainPostID;
 		//while there's a post
 		while (result.next()){
 
 			//if the current result is an original post
-			if(result.getInt("inReplyTo")==-1 && !searched.contains(result.getInt("postID"))){
-				searched.add(result.getInt("postID"));
+			if(result.getInt("inReplyTo")==-1){
 				%>
 				<div class="postDiv" style="border-bottom:1px solid black;">
 					<h1 class="posterName">
@@ -114,55 +110,11 @@ Welcome
 				</div>
 				
 				<% 
+				
+				
+					
+					
 				}
-			else if(!searched.contains(result.getInt("inReplyTo"))){
-				searched.add(result.getInt("inReplyTo"));
-				mainPostID = result.getInt("inReplyTo");
-				
-				Statement stmt3 = con.createStatement();
-				String getMainPost = "SELECT * FROM ForumPosts WHERE postID=\""+mainPostID+"\"";
-				ResultSet result3 = stmt3.executeQuery(getMainPost);
-				if(result3.next()){
-				%>
-				<div class="postDiv" style="border-bottom:1px solid black;">
-					<h1 class="posterName">
-						<%out.print(result3.getString("postername")+": "); %>
-					</h1>
-					<p class="postText"><%out.print(result3.getString("message")); %></p>
-						<% 
-						Statement stmt4 = con.createStatement();
-						String replies = "SELECT * FROM ForumPosts WHERE inReplyTo=\""+mainPostID+"\"";
-						ResultSet result4 = stmt4.executeQuery(replies);
-						
-						while(result4.next()){
-							%>
-							<div class="postReplies" style="margin-left:30px;">
-							
-							<h3 class="posterName">
-							<%out.print(result4.getString("postername")+": "); %>
-							</h3>
-							<p class="postText"><%out.print(result4.getString("message")); %></p>
-		
-							</div>
-							<%
-						}
-				
-					%>
-					<form action='newReply.jsp'>
-						<textarea rows = "3" name = "reply"></textarea>
-						<input type="hidden" type="text" name="replyToID" value="<%out.print(result.getInt("postID"));%>">
-						<input type="hidden" type="text" name="posterID" value="<%out.print(session.getAttribute("userID"));%>">
-	     					    <input type="hidden" type="text" name="posterName" value="<%out.print(session.getAttribute("user"));%>">
-						<input style="width:25%;" type="submit" value="Post reply">
-					</form>
-					<%
-				}
-				%>
-				</div>
-				
-				<% 
-			}
-			else{}
 			}
 	
 		out.print("</table>");

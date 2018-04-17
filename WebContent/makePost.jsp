@@ -10,12 +10,6 @@
 
 <body>
 
-<header>
-	<div class="banner">
-    	<h1 style="font-size: 60px"><a id="banner_home" href="home.jsp">BuyMe</a></h1>
-	</div>
-</header>
-
 <%
 	if ((session.getAttribute("user") == null)) {
 %>
@@ -30,21 +24,21 @@
 
 <section class="container">
     <div class="register">
-      <h1>Compose new message</h1>
-      <form method="post" action="newMessage.jsp">
-      	<p><label for="receiver" class="register_labels"> *To: (enter receiver's username) </label></p>
-        <p><input id="receiver" type="text" name="receiver" required="required" value=""></p>
+      <h1>Compose new post</h1>
+      <form method="post" action="newPost.jsp">
         
-        <p>Description : </p>
+        <p>Text: </p>
         <textarea id="messageBox" rows = "10" name = "message" required></textarea>
         
-        <input type="hidden" type="text" name="sender" value="<%out.print(session.getAttribute("userID"));%>">
+        <input type="hidden" type="text" name="posterID" value="<%out.print(session.getAttribute("userID"));%>">
+        <input type="hidden" type="text" name="posterName" value="<%out.print(session.getAttribute("user"));%>">
         
-        <p class="submit"><input type="submit" value="Submit"></p>
+        <p class="submit"><input type="submit" value="Post"></p>
       </form>
       
     </div>
 </section>
+
 <%} %>
 </body>
 </html>

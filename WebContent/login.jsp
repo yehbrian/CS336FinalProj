@@ -44,6 +44,8 @@
 				session.setAttribute("wrongPasswordFlag","true");
 				session.setAttribute("userID", result.getInt("userID")); // the username will be stored in the session
 				session.setAttribute("user", username); // the username will be stored in the session
+				int temp = result.getInt("permission");
+				session.setAttribute("permissions", temp);
 		        response.sendRedirect("home.jsp");
 			}
 			//if username does not match

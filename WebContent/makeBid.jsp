@@ -64,6 +64,14 @@
 										System.out.println(ps);
 										ps.executeUpdate();
 										
+										String msg = "INSERT INTO Messages(senderID,receiverID,message,time)"
+												+ "VALUES (?, ?, ?, ?)";
+										PreparedStatement message = con.prepareStatement(msg);
+										message.setInt(1, 5);
+										message.setInt(2, result2.getInt("buyerID"));
+										message.setString(3, "you have been outbid on " + itemID);
+										message.setTimestamp(4, time);
+										
 										ps.setInt(1, x);
 										ps.setInt(2, u);
 										ps.setInt(3, itemID);
@@ -100,6 +108,14 @@
 										ps.setTimestamp(6, time);
 										//System.out.println(ps);
 										ps.executeUpdate();
+										
+										String msg = "INSERT INTO Messages(senderID,receiverID,message,time)"
+												+ "VALUES (?, ?, ?, ?)";
+										PreparedStatement message = con.prepareStatement(msg);
+										message.setInt(1, 5);
+										message.setInt(2, result2.getInt("buyerID"));
+										message.setString(3, "you have been outbid on " + itemID);
+										message.setTimestamp(4, time);
 									} else {
 										//System.out.println("nonautomatic bidding, old automatic bidding, 3");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
@@ -152,6 +168,15 @@
 										ps.setTimestamp(6, time);
 										System.out.println(ps);
 										ps.executeUpdate();
+										
+										String msg = "INSERT INTO Messages(senderID,receiverID,message,time)"
+												+ "VALUES (?, ?, ?, ?)";
+										PreparedStatement message = con.prepareStatement(msg);
+										message.setInt(1, 5);
+										message.setInt(2, result2.getInt("buyerID"));
+										message.setString(3, "you have been outbid on " + itemID);
+										message.setTimestamp(4, time);
+										
 									} else if ((result3.getFloat("amount") * -1) >= amount) {
 										System.out.println("automatic bidding else if");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
@@ -167,6 +192,15 @@
 										ps.setTimestamp(6, time);
 										System.out.println(ps);
 										ps.executeUpdate();
+										
+										String msg = "INSERT INTO Messages(senderID,receiverID,message,time)"
+												+ "VALUES (?, ?, ?, ?)";
+										PreparedStatement message = con.prepareStatement(msg);
+										message.setInt(1, 5);
+										message.setInt(2, result2.getInt("buyerID"));
+										message.setString(3, "you have been outbid on " + itemID);
+										message.setTimestamp(4, time);
+										
 									} else {
 										System.out.println("automatic bidding, automatic bidding, 1");
 										String insert = "INSERT INTO Bids(bidId,buyerID,itemID,amount,automaticBidding,time)"
