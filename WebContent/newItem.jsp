@@ -36,8 +36,10 @@
 			
 			String[] itemAttr = {category,cond,brand,metal,stone,color};
 			
-			
-			long h = System.currentTimeMillis() + (long)(Integer.parseInt(hours)*3600000);
+			if(minimum.isEmpty()){
+				minimum = startingBid;
+			}
+			long h = System.currentTimeMillis() + (long)(Float.parseFloat(hours)*3600000);
 			java.sql.Timestamp time = new java.sql.Timestamp(h);
 			System.out.println(time.toString());
 			

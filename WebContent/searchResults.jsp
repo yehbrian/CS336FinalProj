@@ -19,163 +19,207 @@
 		border: 1px solid black;
 		padding: 2px;
 	}
+}
 </style>
 
-<%
-	if ((session.getAttribute("user") == null)) {
-%>
-	You are not logged in
-	<br />
-	<a href="index.jsp">Please Login</a>
-<%
-	}
-	//we need to check to see if the user is a user, admin, or customer rep
-	else{
-%>
+<p>Make a bid here.</p>
+<form method="post" action=bid.jsp>
+	<div>
+		<p>Enter Item ID here: <input type="number" name="itemID" required></p>
+	</div>
 
-Welcome
-<%=session.getAttribute("user")%>
 
-<p><a href='home.jsp'>Back</a>
+	<div>
+	<p>
+		Enter whether you want automatic bidding or not: <select
+			name="automatic" required>
+			<option value="0">Non-automatic bidding</option>
+			<option value="1">automatic bidding</option>
+		</select>
+	</p>
+	</div>
 
-<%
-	if ((session.getAttribute("user") != null)) {
-		int u = Integer.parseInt(session.getAttribute("userID").toString());
-		ApplicationDB db = new ApplicationDB();
-		Connection con = db.getConnection();
+	<div>
+	<p>
+		Enter bidding amount here: <input type="number" name="amount"
+			required>
+	</p>
+	</div>
 
-		//Create a SQL statement
-		Statement stmt = con.createStatement();
+	<p>Please press enter to bid! <input type="submit"></p>
 
-		String searchStr=request.getParameter("searchStr");
-		String search = "SELECT * from ForumPosts WHERE message LIKE '%"+searchStr+"%' ORDER BY postID DESC";
-		
-		ResultSet result = stmt.executeQuery(search);
-%>
-
-<div>
-	<form action="searchResults.jsp">
-		<p><label for="searchStr" class="register_labels"> Search for words: </label></p>
-        <p><input id="searchStr" type="text" name="searchStr" value="" >
-        <input style="width:25%;" type="submit" value="Search Forum"></p>
-	</form>
-</div>
-
-<div class="container2">
-	<form method="post" action="makePost.jsp">
-		<p> <input type="submit" value="Post to forum"> </p>
-	</form>
+</form>
+	<table id="fixedheight">
+		<tr>
+			<td> itemID </td>
+			<td> item name </td>
+			<td> category </td>
+			<td> condition </td>
+			<td> brand </td>
+			<td> metal </td>
+			<td> stone </td>
+			<td> color </td>
+			<td> starting bid </td>
+			<td> increment </td>
+			<td> end time </td>
+			<td> current bid </td>
 			
 	<% 
-		ArrayList<Integer> searched = new ArrayList<Integer>();
-		int currentPostID;
-		int mainPostID;
-		//while there's a post
-		while (result.next()){
+	ApplicationDB db = new ApplicationDB();
+	Connection con = db.getConnection();
+	Statement stmt = con.createStatement();
 
-			//if the current result is an original post
-			if(result.getInt("inReplyTo")==-1 && !searched.contains(result.getInt("postID"))){
-				searched.add(result.getInt("postID"));
-				%>
-				<div class="postDiv" style="border-bottom:1px solid black;">
-					<h1 class="posterName">
-						<%out.print(result.getString("postername")+": "); %>
-					</h1>
-					<p class="postText"><%out.print(result.getString("message")); %></p>
-						<% 
-						currentPostID = result.getInt("postID");
-						
-						Statement stmt2 = con.createStatement();
-						String bids2 = "SELECT * FROM ForumPosts WHERE inReplyTo=\""+currentPostID+"\"";
-						ResultSet result2 = stmt2.executeQuery(bids2);
-						
-						while(result2.next()){
-							%>
-							<div class="postReplies" style="margin-left:30px;">
-							
-							<h3 class="posterName">
-							<%out.print(result2.getString("postername")+": "); %>
-							</h3>
-							<p class="postText"><%out.print(result2.getString("message")); %></p>
-		
-							</div>
-							<%
-						}
-						%>
-						<form action='newReply.jsp'>
-							<textarea rows = "3" name = "reply"></textarea>
-							<input type="hidden" type="text" name="replyToID" value="<%out.print(result.getInt("postID"));%>">
-							<input type="hidden" type="text" name="posterID" value="<%out.print(session.getAttribute("userID"));%>">
-       					    <input type="hidden" type="text" name="posterName" value="<%out.print(session.getAttribute("user"));%>">
-							<input style="width:25%;" type="submit" value="Post reply">
-						</form>
-						<%
-						%>
-				</div>
-				
-				<% 
-				}
-			else if(!searched.contains(result.getInt("inReplyTo"))){
-				searched.add(result.getInt("inReplyTo"));
-				mainPostID = result.getInt("inReplyTo");
-				
-				Statement stmt3 = con.createStatement();
-				String getMainPost = "SELECT * FROM ForumPosts WHERE postID=\""+mainPostID+"\"";
-				ResultSet result3 = stmt3.executeQuery(getMainPost);
-				if(result3.next()){
-				%>
-				<div class="postDiv" style="border-bottom:1px solid black;">
-					<h1 class="posterName">
-						<%out.print(result3.getString("postername")+": "); %>
-					</h1>
-					<p class="postText"><%out.print(result3.getString("message")); %></p>
-						<% 
-						Statement stmt4 = con.createStatement();
-						String replies = "SELECT * FROM ForumPosts WHERE inReplyTo=\""+mainPostID+"\"";
-						ResultSet result4 = stmt4.executeQuery(replies);
-						
-						while(result4.next()){
-							%>
-							<div class="postReplies" style="margin-left:30px;">
-							
-							<h3 class="posterName">
-							<%out.print(result4.getString("postername")+": "); %>
-							</h3>
-							<p class="postText"><%out.print(result4.getString("message")); %></p>
-		
-							</div>
-							<%
-						}
-				
-					%>
-					<form action='newReply.jsp'>
-						<textarea rows = "3" name = "reply"></textarea>
-						<input type="hidden" type="text" name="replyToID" value="<%out.print(result.getInt("postID"));%>">
-						<input type="hidden" type="text" name="posterID" value="<%out.print(session.getAttribute("userID"));%>">
-	     					    <input type="hidden" type="text" name="posterName" value="<%out.print(session.getAttribute("user"));%>">
-						<input style="width:25%;" type="submit" value="Post reply">
-					</form>
-					<%
-				}
-				%>
-				</div>
-				
-				<% 
-			}
-			else{}
-			}
-	
-		out.print("</table>");
-		con.close();
-	} else {
-%>
-You are not logged in
-<br />
-<a href="login.jsp">Please Login</a>
+	String itemID = request.getParameter("itemID");
+	String itemName = request.getParameter("itemName");
+	String category = request.getParameter("category");
+	String cond = request.getParameter("condition");
+	String brand = request.getParameter("brand");
+	String metal = request.getParameter("metal");
+	String stone = request.getParameter("stone");
+	String color = request.getParameter("color");
+	String minPrice = request.getParameter("minPrice");
+	String maxPrice = request.getParameter("maxPrice");
 
-<%
+	String[] colNames = new String[]{"name","category","cond","brand","metal","stone","color","minPrice","maxPrice"};
+	String[] userInputs = new String[]{itemName,category,cond,brand,metal,stone,color,minPrice,maxPrice};
+
+	String search = "";
+
+	if(!itemID.isEmpty()){
+		search = "SELECT * FROM Items "
+				+ "WHERE itemID = \""+itemID+"\"";
 	}
-}
+	else{
+		search = "SELECT * FROM Items WHERE ";
+		
+		int numCriterias = 0;
+		//creates query string
+		for(int i=0;i<7;i++){
+			if(!userInputs[i].isEmpty()){
+				search = search + colNames[i]+"=\""+userInputs[i]+"\" AND ";
+				numCriterias++;
+			}
+		}
+		
+		//get rid of last "AND"
+		if(numCriterias>0){
+			search = search.substring(0, search.length() - 5);
+		}
+		else{
+			search = search.substring(0, search.length() - 7);
+		}
+		
+		//if price ranges are indicated
+		/*
+		if(!minPrice.isEmpty()){
+			search = search + " AND " + "";
+		}
+		if(!maxPrice.isEmpty()){
+			
+		}
+		*/
+	}
+
+	Statement stmt3 = con.createStatement();
+	ResultSet result = stmt.executeQuery(search);
+	String getCurrentPrice = "";
+			
+	while (result.next()) {
+		
+		int _itemID = result.getInt("itemID");
+		
+		getCurrentPrice = "SELECT MAX(amount) FROM Bids WHERE itemID = \"";
+		getCurrentPrice = getCurrentPrice + _itemID + "\"";
+		
+		java.sql.Timestamp time = new java.sql.Timestamp(System.currentTimeMillis());
+		if (result.getTimestamp("endTime").compareTo(time) >= 0) {
+			
+			ResultSet currentPrice = stmt3.executeQuery(getCurrentPrice);
+			float price;
+			
+			if(currentPrice.next() && currentPrice.getFloat(1)!=0){
+				price = currentPrice.getFloat(1);
+			}
+			else{
+				price = result.getFloat("startingBid");
+			}
+			
+			System.out.println("item name: "+result.getString("name")+" price: "+price);
+			if(!minPrice.isEmpty() && Float.parseFloat(minPrice)>price){
+				continue;
+			}
+			if(!maxPrice.isEmpty() && Float.parseFloat(maxPrice)<price){
+				continue;
+			}
+			
+			out.print("<tr>");
+
+			out.print("<td>");
+			out.print(result.getInt("itemID"));
+			out.print("</td>");
+
+			out.print("<td>");
+			out.print(result.getString("name"));
+			out.print("</td>");
+
+			out.print("<td>");
+			out.print(result.getString("category"));
+			out.print("</td>");
+
+			out.print("<td>");
+			out.print(result.getString("cond"));
+			out.print("</td>");
+
+			out.print("<td>");
+			out.print(result.getString("brand"));
+			out.print("</td>");
+
+			out.print("<td>");
+			out.print(result.getString("metal"));
+			out.print("</td>");
+
+			out.print("<td>");
+			out.print(result.getString("stone"));
+			out.print("</td>");
+
+			out.print("<td>");
+			out.print(result.getString("color"));
+			out.print("</td>");
+
+			out.print("<td>");
+			out.print(result.getFloat("startingBid"));
+			out.print("</td>");
+
+			out.print("<td>");
+			out.print(result.getFloat("increment"));
+			out.print("</td>");
+
+			out.print("<td>");
+			out.print(result.getTimestamp("endTime"));
+			out.print("</td>");
+
+			Statement stmt2 = con.createStatement();
+			String bids2 = String.format("select * from Bids where itemID = '%d' AND amount= (SELECT max(amount) FROM Bids where itemID = '%d')",
+					result.getInt("itemID"), result.getInt("itemID"));
+			ResultSet result2 = stmt2.executeQuery(bids2);
+
+			if (result2.next()) {
+				out.print("<td>");
+				out.print(result2.getFloat("amount"));
+				out.print("</td>");
+			}
+			else{
+				out.print("<td>");
+				out.print("no current bids");
+				out.print("</td>");
+			}
+			out.print("</tr>");
+		}
+		
+	}
+	out.print("</table>");
+	con.close();
+
 %>
 
 </body>

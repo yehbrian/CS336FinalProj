@@ -163,7 +163,7 @@ th, td {
 						
 						Statement stmt3 = con.createStatement();
 						//System.out.println( result.getInt("itemID"));
-						String bids3 = String.format("Select * from Users where userID = '%d'", u);
+						String bids3 = String.format("Select * from Users where userID = '%d'", result2.getInt("buyerID"));
 						//System.out.println(bids2);
 						//System.out.println(bids2);
 						ResultSet result3 = stmt3.executeQuery(bids3);

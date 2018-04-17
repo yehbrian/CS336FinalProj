@@ -39,9 +39,10 @@
 				
 				//if password does not match
 				if(!expectedPassword.equals(actualPassword) || result.getInt("isActive")==0){
+					session.setAttribute("wrongPasswordFlag","true");
 					response.sendRedirect("index.jsp");
 				}
-				session.setAttribute("wrongPasswordFlag","true");
+					
 				session.setAttribute("userID", result.getInt("userID")); // the username will be stored in the session
 				session.setAttribute("user", username); // the username will be stored in the session
 				int temp = result.getInt("permission");

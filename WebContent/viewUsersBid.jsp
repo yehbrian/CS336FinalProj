@@ -30,7 +30,7 @@ th, td {
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 
-			String torun = String.format("SELECT * FROM Bids WHERE buyerID = '%d' ORDER BY itemID DESC, amount DESC", u);
+			String torun = String.format("SELECT * FROM Bids WHERE buyerID = '%d' ORDER BY bidID DESC", u);
 
 			ResultSet result = stmt.executeQuery(torun);
 

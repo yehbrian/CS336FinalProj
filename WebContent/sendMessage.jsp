@@ -28,6 +28,7 @@
 	else{
 %>
 
+<p><a href='home.jsp'>Go Back</a>
 <section class="container">
     <div class="register">
       <h1>Compose new message</h1>

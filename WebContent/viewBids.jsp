@@ -84,6 +84,28 @@ table{
 				}
 
 			}
+			
+			Statement stmt3 = con.createStatement();
+			String getItemAttr = "SELECT * FROM Items WHERE itemID = \""+itemID+"\"";
+			ResultSet itemAttr = stmt3.executeQuery(getItemAttr);
+			itemAttr.next();
+			%>
+			<form method="post" action="searchResults.jsp">
+
+		        <input type="hidden" type="text" name="category" value="<%out.print(itemAttr.getString("category"));%>">
+		        <input type="hidden" type="text" name="brand" value="<%out.print(itemAttr.getString("brand"));%>">
+		        <input type="hidden" type="text" name="condition" value="<%out.print(itemAttr.getString("cond"));%>">
+		        <input type="hidden" type="text" name="metal" value="">
+		        <input type="hidden" type="text" name="stone" value="">
+		        <input type="hidden" type="text" name="color" value="">
+		        <input type="hidden" type="text" name="itemName" value="">
+		        <input type="hidden" type="text" name="itemID" value="">
+		        <input type="hidden" type="text" name="minPrice" value="">
+		        <input type="hidden" type="text" name="maxPrice" value="">
+		        
+		        <p class="submit"><input type="submit" value="View Similiar Items"></p>
+	      </form>
+			<% 
 			con.close();
 		}
 

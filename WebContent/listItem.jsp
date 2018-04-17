@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>create auction here</title>
-</head>
+
+<jsp:include page="head.jsp"></jsp:include>
 <body>
+
+<p><a href='home.jsp'>Go Back</a>
 <form method = "post" action="newItem.jsp">
   Name of item:<br>
   <input type="text" name="name" required>
@@ -55,13 +55,13 @@
          
           <br>	
 
-	minimum (reserve) price (enter the starting bid if you do not want a minimum price):<br>
-  <input type="number" step="0.01" name="minimum" required>
+	minimum (reserve) price:<br>
+  <input type="number" step="0.01" name="minimum">
   <br>	
           <br>	
 
 	In how many hours do you want your auction to end?<br>
-   <input type="number" name="date" required>
+   <input type="number" step="0.01" name="date" required>
   <br>	
          <input type="submit">
          

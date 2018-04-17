@@ -36,7 +36,7 @@
 Welcome
 <%=session.getAttribute("user")%>
 
-<p><a href='home.jsp'>Back</a>
+<p><a href='home.jsp'>Go Back</a>
 
 <%
 	if ((session.getAttribute("user") != null)) {
@@ -77,22 +77,22 @@ Welcome
 	</p>
 	</div>
 
-	<p> <input type="submit" value="Make a bid!" width="30%"> </p>
+	<p> <input type="submit" value="Make a Bid!" width="30%"> </p>
 	</form>
 	
 	view history of an items bids here.
 	<form method="post" action="viewBids.jsp">
 		<div>
 			Enter Item ID here: <input type="number" name="itemID" required>
+			<input style="width:20%;" type="submit" value="View History">
 		</div>
-
-		Please press enter to bid! <input type="submit">
-
 	</form>
 	
+	<br></br>
+	
 	<div>
-	Sort By:
 	<form method="post" action="sortedResults.jsp">
+	Sort By:
 	<select name="column">
 		<option value="itemID">Item ID</option>
 		<option value="name">Name</option>
